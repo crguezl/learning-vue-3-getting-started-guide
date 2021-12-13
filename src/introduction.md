@@ -80,7 +80,7 @@ let counterApp = Vue.createApp(Counter).mount('#counter')
 const Counter = {
   data() {
     return {
-      counter: 0
+      counter: 1
     }
   }
 }
