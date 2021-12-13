@@ -96,24 +96,35 @@ and everything is now <strong>reactive</strong>!.
 
 <img src="assets/images/vue3-debugging.png" width="90%" />
 
+
+Take a look at the example below where `counter` property increments every second and you will see how rendered DOM changes:
+
 ```html
-
-<div id="counter2" class="execution">
+<div id="counter2" class="execution input-group mb-3"">
   Counter: {{ counter }}
+  <div class="input-group-append">
+  <button v-on:click="stopTimer" class="btn btn-danger">Stop Timer</button>
+  </div>
 </div>
-
 
 <script>
 const Counter2 = {
   data() {
     return {
+      clock: null,
       counter: 0
     }
   },
   mounted() {
-    setInterval(() => {
+    this.clock = setInterval(() => {
       this.counter++
     }, 1000)
+  },
+  methods: {
+    stopTimer() {
+      clearInterval(this.clock);
+      this.counter = 0;
+    }
   }
 }
 
@@ -121,22 +132,31 @@ Vue.createApp(Counter2).mount('#counter2')
 </script>
 ```
 
-<div id="counter2" class="execution">
+<div id="counter2" class="execution input-group mb-3"">
   Counter: {{ counter }}
+  <div class="input-group-append">
+  <button v-on:click="stopTimer" class="btn btn-danger">Stop Timer</button>
+  </div>
 </div>
-
 
 <script>
 const Counter2 = {
   data() {
     return {
+      clock: null,
       counter: 0
     }
   },
   mounted() {
-    setInterval(() => {
+    this.clock = setInterval(() => {
       this.counter++
     }, 1000)
+  },
+  methods: {
+    stopTimer() {
+      clearInterval(this.clock);
+      this.counter = 0;
+    }
   }
 }
 
