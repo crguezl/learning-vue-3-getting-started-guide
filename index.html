@@ -169,12 +169,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </ul></li>
           <li><a href="#composing-with-components">Composing with Components</a></li>
           </ul></li>
-          <li><a href="#application-component-instances">Application &amp; Component Instances</a></li>
+          <li><a href="#application-component-instances">Application &amp; Component Instances</a>
+          <ul>
           <li><a href="#creating-an-application-instance">Creating an Application Instance</a></li>
           <li><a href="#the-root-component">The Root Component</a></li>
           <li><a href="#component-instance-properties">Component Instance Properties</a></li>
           <li><a href="#lifecycle-hooks">Lifecycle Hooks</a></li>
           <li><a href="#lifecycle-diagram">Lifecycle Diagram</a></li>
+          </ul></li>
           <li><a href="#references">References</a></li>
           </ul></li>
           </ul>
@@ -667,7 +669,7 @@ TodoListAapp.component('todo-item', {
 TodoListAapp.mount('#todo-list-app')
 </script>
 <h2 id="application-component-instances">Application &amp; Component Instances</h2>
-<h2 id="creating-an-application-instance">Creating an Application Instance</h2>
+<h3 id="creating-an-application-instance">Creating an Application Instance</h3>
 <p>Every Vue application starts by creating a new <strong>application instance</strong> with the <code>createApp</code> function:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> Vue<span class="op">.</span><span class="fu">createApp</span>({</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* options */</span></span>
@@ -683,7 +685,7 @@ TodoListAapp.mount('#todo-list-app')
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">directive</span>(<span class="st">&#39;focus&#39;</span><span class="op">,</span> FocusDirective)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">use</span>(LocalePlugin)</span></code></pre></div>
 <p>You can browse the full application API in the <a href="https://v3.vuejs.org/api/application-api.html">API reference</a>.</p>
-<h2 id="the-root-component">The Root Component</h2>
+<h3 id="the-root-component">The Root Component</h3>
 <p>The options passed to <code>createApp</code> are used to configure the <strong>root component</strong>. That component is used as the starting point for rendering when we <strong>mount</strong> the application.</p>
 <p>An application needs to be mounted into a DOM element. For example, if we want to mount a Vue application into <code>&lt;div id="app"&gt;&lt;/div&gt;</code>, we should pass <code>#app</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> RootComponent <span class="op">=</span> {</span>
@@ -708,7 +710,7 @@ TodoListAapp.mount('#todo-list-app')
 <p>All of the component instances in this application will share the same application instance.</p>
 <p>The root component isn't really any different from any other component.</p>
 <p>The configuration options are the same, as is the behavior of the corresponding component instance.</p>
-<h2 id="component-instance-properties">Component Instance Properties</h2>
+<h3 id="component-instance-properties">Component Instance Properties</h3>
 <p>Properties defined in <code>data</code> are exposed via the component instance:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> Vue<span class="op">.</span><span class="fu">createApp</span>({</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>() {</span>
@@ -723,7 +725,7 @@ TodoListAapp.mount('#todo-list-app')
 <p>All of the properties of the component instance, no matter how they are defined, will be accessible in the component's template.</p>
 <p>Vue also exposes some built-in properties via the component instance, such as <code>$attrs</code> and <code>$emit</code>.</p>
 <p>These properties all have a <code>$</code> prefix to avoid conflicting with user-defined property names.</p>
-<h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
+<h3 id="lifecycle-hooks">Lifecycle Hooks</h3>
 <p>Each component instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called <strong>lifecycle hooks</strong>, giving users the opportunity to add their own code at specific stages.</p>
 <p>For example, the <a href="https://v3.vuejs.org/api/options-lifecycle-hooks.html#created">created</a> hook can be used to run code after an instance is created:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">createApp</span>({</span>
@@ -749,7 +751,7 @@ TodoListAapp.mount('#todo-list-app')
 <p><code>vm.$watch('a', newValue =&gt; this.myMethod())</code>.</p>
 <p>Since an arrow function doesn't have a <code>this</code>, <code>this</code> will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as <code>Uncaught TypeError: Cannot read property of undefined</code> or <code>Uncaught TypeError: this.myMethod is not a function</code>.</p>
 </div>
-<h2 id="lifecycle-diagram">Lifecycle Diagram</h2>
+<h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
 <p>Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.</p>
 <p><img src="https://v3.vuejs.org/images/lifecycle.svg" width="840" /></p>
 <h2 class="unnumbered" id="references">References</h2>

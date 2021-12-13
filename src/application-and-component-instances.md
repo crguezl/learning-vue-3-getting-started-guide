@@ -1,7 +1,7 @@
 
 ## Application & Component Instances
 
-## Creating an Application Instance
+### Creating an Application Instance
 
 Every Vue application starts by creating a new **application instance**
 with the `createApp` function:
@@ -35,7 +35,7 @@ Vue.createApp({})
 
 You can browse the full application API in the [API reference](https://v3.vuejs.org/api/application-api.html).
 
-## The Root Component
+### The Root Component
 
 The options passed to `createApp` are used to configure the **root
 component**. That component is used as the starting point for rendering
@@ -96,7 +96,7 @@ The configuration options
 are the same, as is the behavior of the corresponding component
 instance.
 
-## Component Instance Properties
+### Component Instance Properties
 
 Properties defined in
 `data` are exposed via the component instance:
@@ -131,7 +131,7 @@ such as `$attrs` and `$emit`.
 These properties all have a `$` prefix to
 avoid conflicting with user-defined property names.
 
-## Lifecycle Hooks
+### Lifecycle Hooks
 
 Each component instance goes through a series of initialization steps
 when it\'s created - for example, it needs to set up data observation,
@@ -184,7 +184,7 @@ in errors such as
 `Uncaught TypeError: this.myMethod is not a function`.
 :::
 
-## Lifecycle Diagram
+### Lifecycle Diagram
 
 Below is a diagram for the instance lifecycle. You don\'t need to fully
 understand everything going on right now, but as you learn and build
