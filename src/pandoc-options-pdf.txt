@@ -1,0 +1,8 @@
+--toc 
+--pdf-engine=xelatex
+--filter pandoc-include 
+--from markdown 
+--bibliography=biblio.bib
+--citeproc 
+-s index.md
+--o ../index.pdf
