@@ -297,4 +297,4 @@ const TwoWayBinding = {
 let twoWayBindingApp = Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 </script>
 
-Open the developer tools and change `twoWayBindingApp.mwssage`
+Open the developer tools and change `twoWayBindingApp.message`
