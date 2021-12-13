@@ -94,7 +94,7 @@ This looks pretty similar to rendering a string template, but Vue has
 done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
 and everything is now <strong>reactive</strong>!.
 
-![](assets/images/vue3-debugging.png)
+< img src="assets/images/vue3-debugging.png" width="75%" />
 
 ```html
 
