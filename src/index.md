@@ -49,8 +49,8 @@ development version, includes helpful console warnings
 -->
 
 <!-- Vue 3! -->
-<script src="https://unpkg.com/vue@next"></script>
-
+<script src="https://unpkg.com/vue@3.2.26"></script>
+<!-- https://unpkg.com/vue@next -->
 
 # Annotated Reading of the **Essentials** Section of the *Vue.js version 3 Guide*
 
@@ -59,8 +59,7 @@ https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attr
 -->
 
 
-These are my notes written in pandoc markdown [@casiano] from reading the guide of Vue.js (v3) [@vuestart], the book [@djirdeh2018fullstack], [@awesomevue], [@vuejsfundamentals],
-[@vuejscomponentsfundamentals]  and other [references](#references).
+These are my notes written in pandoc markdown [@casiano] from reading the guide of Vue.js (v3) [@vuestart3],   and other [references](#references).
 
 This document only covers
 the initial sections of the *Essentials* part of the Guide, from section *Introduction* up to section *Computed Properties and Watchers*.  
@@ -83,13 +82,14 @@ To see the result, you can
    1. Run `npm install-pandoc-dependencies` to install `pandoc-include` 
    2. Run `npm start` to compile the sources and open the resulting `index.html` file. 
 
+This document uses Vue.js v3 and is loaded using the following lines:
+
+```html
+<!-- Vue 3! -->
+<script src="https://unpkg.com/vue@3.2.26"></script>
+<!-- Use "https://unpkg.com/vue@next" if you want the last version -->
+```
+
 !include introduction.md
-
-## Exercise: Vuejs Fundamentals
-
-Follow the tutorial at [@vuejsfundamentals], reproduce the examples and leave the results in folder `vuejsfundamentals` of the assignment repo
-
-The source is at repo [vueschool/vuejs-fundamentals](https://github.com/vueschool/vuejs-fundamentals/commit/844bdf75f6a17647e202813cf574a03a61541edf). The video seems to correspond to this commit: 844bdf75f6a17647e202813cf574a03a61541edf
-
 
 ## References

@@ -1,4 +1,4 @@
-## Introduction to Vue.js {#introduction}
+## Introduction to Vue.js 3 {#introduction}
 
 Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. 
 
@@ -6,57 +6,86 @@ Unlike other monolithic frameworks, Vue is designed from the ground up to be inc
 
 The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. 
 
-On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
+On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](https://v3.vuejs.org/guide/single-file-component.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+
+<a href="https://www.vuemastery.com/courses/intro-to-vue-3/intro-to-vue3" target="_blank" rel="sponsored noopener" title="Watch a free video course on Vue Mastery">Watch a video course on Vue Mastery</a>
+
+The easiest way to try out Vue.js is using the <a href="https://codepen.io/team/Vue/pen/KKpRVpx" target="_blank" rel="noopener noreferrer">Hello World example<span>:
+
+```html
+<div id="hello-vue" class="execution">
+  {{ message }}
+</div>
+
+<script>
+const HelloVueApp = {
+  data() {
+    return {
+      message: 'Hello Vue!!'
+    }
+  }
+}
+
+let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
+</script>
+```
+
+<div id="hello-vue" class="execution">
+  {{ message }}
+</div>
+
+<script>
+const HelloVueApp = {
+  data() {
+    return {
+      message: 'Hello Vue!!'
+    }
+  }
+}
+
+let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
+</script>
 
 
-### Simple example
+### Declarative Rendering
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
 
 ```html
-<!-- development version, includes helpful console warnings -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
-
-<h2>
-  <div id="app">
-    {{ message }}
-  </div>
-</h2>
+<div id="counter">
+  Counter: {{ counter }}
+</div>
 
 <script>
-  var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello Vue!'
+const Counter = {
+  data() {
+    return {
+      counter: 0
     }
-  })
+  }
+}
+
+let counterApp = Vue.createApp(Counter).mount('#counter')
 </script>
 ```
 
-<!-- development version, includes helpful console warnings -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
-<!-- Vue 3! 
-<script src="https://unpkg.com/vue@next"></script>
--->
-
 **Execution:**
 
-<h2 class="execution">
-  <div id="app">
-    {{ message }}
-  </div>
-</h2>
+<div id="counter" class="execution">
+  Counter: {{ counter }}
+</div>
 
 <script>
-  var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello Vue!'
+const Counter = {
+  data() {
+    return {
+      counter: 0
     }
-  })
+  }
+}
+
+let counterApp = Vue.createApp(Counter).mount('#counter')
 </script>
 
 We have already created our very first Vue app! 
@@ -65,555 +94,51 @@ This looks pretty similar to rendering a string template, but Vue has
 done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
 and everything is now <strong>reactive</strong>!.
 
-#### Check in the developer's tools
-
-<p>
-  How do we know?
-<ul>
-  <li>Open your browser’s JavaScript console (right now, 
-  <a href="https://crguezl.github.io/learning-vue-geting-started-guide/" target="_blank">on the GH page</a>) and </li>
-  <li> set <code>app.message</code> to a
-    different value. </li>
-</ul>
-
-You should see the rendered example above update accordingly.
-</p>
-
-### Exercise: Install Google Chrome extension for Vue
-
-Install Google Chrome extension for Vue
-
-[![](assets/images/vue-chrome-extension.png){width="70%"}](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-
-Remember to config the extension to allow  `file://` access
-
-### No interpolation occurs outside the Vue app entry point
-
-This message appears verbatim:
+![](assets/images/vue3-debugging.png)
 
 ```html
-<h3>{{ message }}</h3>
-```
 
-because it is outside the element to wich Vue has been anchored.
-
-**Execution:**
-
-<h3 class="execution">
-{{ message }}
-</h3>
-
-### The v-bind directive {#v-bind-directive}
-
-Here we define a second entry point for a second Vue app object:
-
-```html
-<div id="app-2">
-  <span v-bind:title="message">
-    <strong>
-      Hover your mouse over me for a few seconds
-      to see my dynamically bound title!
-    </strong>
-  </span>
+<div id="counter2" class="execution">
+  Counter: {{ counter }}
 </div>
 
+
 <script>
-  var app2 = new Vue({
-    el: '#app-2',
-    data: {
-      message: 'You loaded this page on ' + new Date().toLocaleString()
+const Counter2 = {
+  data() {
+    return {
+      counter: 0
     }
-  })
-</script>
-```
-
-**Execution:**
-
-<div id="app-2" class="execution">
-  <span v-bind:title="message">
-    <strong>
-      Hover your mouse over me for a few seconds
-      to see my dynamically bound title!
-    </strong>
-  </span>
-</div>
-
-<script>
-  var app2 = new Vue({
-    el: '#app-2',
-    data: {
-      message: 'You loaded this page on ' + new Date().toLocaleString()
-    }
-  })
-</script>
-
-Here we are encountering something new. 
-  
-1. The <code>v-bind</code> attribute you are seeing is called a
-  <strong>directive</strong>. 
-2. Directives are prefixed with <code>v-</code> to indicate that they are special attributes
-  provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
-3. Here, it is basically saying **keep this element’s <code>title</code> attribute** 
-   up-to-date with the <code>message</code> property on the Vue instance.
-
-If you open up your JavaScript console again and enter 
-
-<code>app2.message = 'some new message'</code>, 
-
-you’ll once again see that the bound HTML - in this case the <code>title</code> attribute - has been updated.
-
-The `v-bind:attribute="expression"` directive is used to bind a `expression` to an HTML `attribute`.
-
-### Conditionals 
-
-It’s easy to toggle the presence of an element, too:
-
-```html
-<div id="app-3">
-  <span v-if="seen">Now you see me</span>
-</div>
-
-<script>
-var app3 = new Vue({
-  el: '#app-3',
-  data: {
-    seen: true
-  }
-})
-</script>
-```
-
-::: tip
-**About this notes**: This example initially didn't work due to `pandoc` modifying the directive `v-if` inside the source to `data-v-if`. I had to remove the `data-` prefix to make it work. See script [`remove-data`in src/package.json](src/package.json). The same happens with some other directives.
-:::
-
-**Execution:**
-
-<div id="app-3" class="execution">
-  <span v-if="seen">Now you see me</span>
-</div>
-
-<script>
-var app3 = new Vue({
-  el: '#app-3',
-  data: {
-    seen: true
-  }
-})
-</script>
-
-
-### Loops: v-for
-
-There are quite a few other directives, each with its own special functionality. 
-
-For example, the <code>v-for</code> directive can be used for displaying a list of items using the data from an Array:
-
-```html
-<div id="app-4">
-  <ol>
-    <li v-for="todo in todos">
-      {{ todo.text }}
-    </li>
-  </ol>
-</div>
-
-<script>
-var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ]
-  }
-})
-</script>
-```
-
-<div id="app-4" class="execution">
-  <ol>
-    <li v-for="todo in todos">
-      {{ todo.text }}
-    </li>
-  </ol>
-</div>
-
-<script>
-var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ]
-  }
-})
-</script>
-
-The `v-for` directive can be used also with objects.
-
-```html
-<div id="appVforWithObjects" class="execution">
-  <ul>
-    <li v-for="(rent, city, index) in averageRent">
-    {{ index }}: The average rent in {{ city }} is {{ rent }} €
-    </li>
-  </ul>
-</div>
-
-<script>
-  let appVforWithObjects = new Vue({
-    el: "#appVforWithObjects",
-    data() { 
-      return { 
-        averageRent: {
-        "Las Palmas": 747,
-        "Santa Cruz de Tenerife": 787,
-        "La Laguna": 691
-      }
-      }
-    }
-  })
-</script>
-```
-
-Note that  the order of arguments is `(value, key, index)`. The `value` goes first. 
-
-<div id="appVforWithObjects" class="execution">
-  <ul>
-    <li v-for="(rent, city, index) in averageRent">
-    {{ index }}: The average rent in {{ city }} is {{ rent }} €
-    </li>
-  </ul>
-</div>
-
-<script>
-  let appVforWithObjects = new Vue({
-    el: "#appVforWithObjects",
-    data() { 
-      return { 
-        averageRent: {
-        "Las Palmas": 747,
-        "Santa Cruz de Tenerife": 787,
-        "La Laguna": 691
-      }
-      }
-    }
-  })
-</script>
-
-### Handling User Input
-
-
-```html
-<div id="app-5">
-  <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
-</div>
-
-<script>
-var app5 = new Vue({
-  el: '#app-5',
-  data: {
-    message: 'Hello Vue.js!'
   },
-  methods: {
-    reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
-    }
+  mounted() {
+    setInterval(() => {
+      this.counter++
+    }, 1000)
   }
-})
+}
+
+Vue.createApp(Counter2).mount('#counter2')
 </script>
 ```
 
-<div id="app-5">
-  <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+<div id="counter2" class="execution">
+  Counter: {{ counter }}
 </div>
 
+
 <script>
-var app5 = new Vue({
-  el: '#app-5',
-  data: {
-    message: 'Hello Vue.js!'
+const Counter2 = {
+  data() {
+    return {
+      counter: 0
+    }
   },
-  methods: {
-    reverseMessage: function () {
-      this.message = this.message.split('').reverse().join('')
-    }
+  mounted() {
+    setInterval(() => {
+      this.counter++
+    }, 1000)
   }
-})
+}
+
+Vue.createApp(Counter2).mount('#counter2')
 </script>
-
-
-### v-model
-
-Vue also provides the v-model directive that makes **two-way binding** between 
-**form input** and **app state** a breeze:
-
-```html
-<div id="app-6">
-  <p>{{ message }}</p>
-  <input v-model="message">
-</div>
-
-<script>
-var app6 = new Vue({
-  el: '#app-6',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
-</script>
-```
-
-**Execution:**
-
-<div id="app-6" class="execution">
-  <p>{{ message }}</p>
-  <input v-model="message">
-</div>
-
-<script>
-var app6 = new Vue({
-  el: '#app-6',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
-</script>
-
-The following example combines the `v-model` directive with the `v-if`, `v-else-if` and `v-else` directives:
-
-```html 
-<div id="appifvsshow" class="execution">
-<strong>Select a dog:</strong>
-<select v-model=selected><br/>
-  <option value=0>First dog</option>
-  <option value=1>Second dog</option>
-  <option value=2>All the dogs</option>
-</select>
-<span>Selected option: {{ selected }}</span>
-<p v-if="selected === '0'">First dog is {{ dogs[0] }}</p>
-<p v-else-if="selected === '1'">Second dog is {{ dogs[1] }}</p> 
-<p v-else>All the dogs are {{ dogs }}</p>
-</div>
-
-<script>
-let appifvsshow = new Vue({
-  el: "#appifvsshow",
-  data: {
-    dogs: [ "terrier", "beagle", "chihuahua", "dalmatian" ],
-    selected: null
-  }
-})
-</script>
-```
-
-<div id="appifvsshow" class="execution">
-<strong>Select a dog:</strong>
-<select v-model=selected><br/>
-  <option value=0>First dog</option>
-  <option value=1>Second dog</option>
-  <option value=2>All the dogs</option>
-</select>
-<span>Selected: {{ selected }}</span>
-<p v-if="selected === '0'">First dog is {{ dogs[0] }}</p>
-<p v-else-if="selected === '1'">Second dog is {{ dogs[1] }}</p> 
-<p v-else>All the dogs are {{ dogs }}</p>
-</div>
-
-<script>
-let appifvsshow = new Vue({
-  el: "#appifvsshow",
-  data: {
-    dogs: [ "terrier", "beagle", "chihuahua", "dalmatian" ],
-    selected: null
-  }
-})
-</script>
-
-
-### Composing with Components
-
-The component system is another important concept in Vue, 
-because it’s an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. 
-
-If we think about it, almost any type of application interface can be abstracted into a tree of components:
-
-![](assets/images/components.png){width="60%"}
-
-
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
-
-```js
-// Define a new component called todo-item
-Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
-})
-
-var appXXX = new Vue({
-  el: '#app-XXX',
-  data: {
-    groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
-    ]
-  }
-})
-
-```
-
-Now you can compose it in another component’s template:
-
-```html
-<div id="app-XXX">
-  <ol>
-    <todo-item
-      v-for="item in groceryList"
-    ></todo-item>
-  </ol>
-</div>
-```
-
-But this would render the same text for every todo, which is not super interesting: 
-
-**Execution:**
-
-<div id="app-XXX" class="execution">
-  <ol>
-    <todo-item
-      v-for="item in groceryList"
-    ></todo-item>
-  </ol>
-</div>
-
-
-<script>
-// Define a new component called todo-item
-Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
-})
-
-var appXXX = new Vue({
-  el: '#app-XXX',
-  data: {
-    groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
-    ]
-  }
-})
-</script>
-
-
-*We should be able to pass data from the parent scope into child components.*
-
-Let’s modify the component definition to make it accept a **[prop]**:
-
-[prop]: https://vuejs.org/v2/guide/components.html#Passing-Data-to-Child-Components-with-Props
-
-```js 
-Vue.component('todo-item', {
-  props: ['todo'],
-  template: '<li>{{ todo.text }}</li>'
-})
-```
-
-The `todo-item` component now accepts a
-"[prop]", which is like a *custom attribute*.
-This [prop] is called `todo`.
-
-Now we can pass the `todo` into each repeated component using [v-bind](#v-bind-directive):
-
-```html
-<div id="app-7">
-  <ol>
-    <todo-item
-      v-for="item in groceryList"
-      v-bind:todo="item"
-      v-bind:key="item.id"
-    ></todo-item>
-  </ol>
-</div>
-```
-
-Now when using the  `todo-item`  we bind the `todo` property  to the 
-`item`  in the `groceryList` array so that its content can be dynamic.
-
-We also need to provide each component with a "`key`",
-which will be explained later.
-
-```js 
-Vue.component('todo-item', {
-  props: ['todo'],
-  template: '<li>{{ todo.text }}</li>'
-})
-
-var app7 = new Vue({
-  el: '#app-7',
-  data: {
-    groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
-    ]
-  }
-})
-```
-
-**Execution:**
-
-<div id="app-7" class="execution">
-  <ol>
-    <todo-item
-      v-for="item in groceryList"
-      v-bind:todo="item"
-      v-bind:key="item.id"
-    ></todo-item>
-  </ol>
-</div>
-
-<script>
-Vue.component('todo-item', {
-  props: ['todo'],
-  template: '<li>{{ todo.text }}</li>'
-})
-
-var app7 = new Vue({
-  el: '#app-7',
-  data: {
-    groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
-    ]
-  }
-})
-</script>
-
-Open the console and add to `app7.groceryList` a new item. See what happens.
-
-See section [Components Basics] to know more about Vue Components.
-
-[Components Basics]: https://vuejs.org/v2/guide/components.html
-
-In a large application, it is necessary to divide the whole app into components to make development manageable. 
-
-We will talk more about components later, but here’s an (imaginary) example of what an app’s template might look like with components:
-
-```html
-<div id="app">
-  <app-nav></app-nav>
-  <app-view>
-    <app-sidebar></app-sidebar>
-    <app-content></app-content>
-  </app-view>
-</div>
-```
-
