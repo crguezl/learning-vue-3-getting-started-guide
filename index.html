@@ -167,6 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#v-if">v-if</a></li>
           <li><a href="#v-for">v-for</a></li>
           </ul></li>
+          <li><a href="#composing-with-components">Composing with Components</a></li>
           </ul></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -531,6 +532,10 @@ const ListRendering = {
 const ListRenderingApp = Vue.createApp(ListRendering).mount('#list-rendering')
 </script>
 <p>Open the developer tools and add a new item: <code>ListRenderingApp.todos.push({text:"Learn TypeScript"})</code></p>
+<h3 id="composing-with-components">Composing with Components</h3>
+<p>The component system is another important concept in Vue, because it’s an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components.</p>
+<p>If we think about it, almost any type of application interface can be abstracted into a tree of components:</p>
+<p><img src="./assets/images/components.png" style="width:60.0%" /></p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-casiano" class="csl-entry" role="doc-biblioentry">

@@ -403,3 +403,13 @@ const ListRenderingApp = Vue.createApp(ListRendering).mount('#list-rendering')
 </script>
 
 Open the developer tools and add a new item: `ListRenderingApp.todos.push({text:"Learn TypeScript"})`
+
+
+### Composing with Components
+
+The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components.
+
+ If we think about it, almost any type of application interface can be abstracted into a tree of components:
+
+ ![](assets/images/components.png){width="60%"}
+
