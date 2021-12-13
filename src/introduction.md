@@ -413,6 +413,68 @@ The component system is another important concept in Vue, because it's an abstra
 
  ![](assets/images/components.png){width="60%"}
 
+In Vue, a component is essentially an instance with pre-defined options. 
+
+Registering a component in Vue is straightforward: 
+
+1. We create a component object as we did with App objects and 
+2. We define it in parent's `components` option:
+
+```html
+
+<div id="todo-list-app1" class="execution">
+<ol>
+  <todo-item
+      v-for="item in 3" 
+      v-bind:key="item"
+    >
+</ol>
+</div>
+
+<script>
+// Create Vue application
+const TodoListApp1 = Vue.createApp({
+  components: {
+    todoItem: { template: `<li>This is a todo</li>`} // Register a new component
+  }
+}).mount('#todo-list-app1')
+</script>
+```
+
+<div id="todo-list-app1" class="execution">
+<ol>
+  <todo-item
+      v-for="item in 3" 
+      v-bind:key="item"
+    >
+</ol>
+</div>
+
+<script>
+// Create Vue application
+const TodoListApp1 = Vue.createApp({
+  components: {
+    todoItem: { template: `<li>This is a todo</li>`} // Register a new component
+  }
+}).mount('#todo-list-app1')
+</script>
+
+But this would render the same text for every todo, which is not super interesting. 
+
+We should be able to pass data from the parent scope into child components. 
+
+Let's modify the component definition to make it accept a prop:
+
+```js
+app.component('todo-item', {
+  props: ['todo'],
+  template: `<li>{{ todo.text }}</li>`
+})
+```
+
+Now we can pass the todo into each repeated component using `v-bind`:
+
+
 ```html
 <div id="todo-list-app" class="execution">
   <ol>
