@@ -92,4 +92,6 @@ This document uses Vue.js v3 and is loaded using the following lines:
 
 !include introduction.md
 
+!include application-and-component-instances.md
+
 ## References
