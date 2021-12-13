@@ -160,7 +160,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#introduction">Introduction to Vue.js 3</a>
           <ul>
-          <li><a href="#declarative-rendering">Declarative Rendering</a></li>
+          <li><a href="#declarative-rendering-and-v-on">Declarative Rendering and v-on</a></li>
+          <li><a href="#handling-user-input-with-v-on-and-v-model">Handling User Input with v-on and v-model</a></li>
           </ul></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -238,7 +239,7 @@ const HelloVueApp = {
 
 let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
 </script>
-<h3 id="declarative-rendering">Declarative Rendering</h3>
+<h3 id="declarative-rendering-and-v-on">Declarative Rendering and v-on</h3>
 <p>At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;counter&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  Counter: {{ counter }}</span>
@@ -332,6 +333,79 @@ const Counter2 = {
 }
 
 Vue.createApp(Counter2).mount('#counter2')
+</script>
+<p>To let users interact with our app, we can use the <code>v-on</code> directive to attach event listeners that invoke methods on our instances.</p>
+<p>Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.</p>
+<p>In addition to text interpolation, we can also bind element attributes like this:</p>
+<div id="bind-attribute" class="execution">
+<p><span v-bind:title="message"> Hover your mouse over me for a few seconds to see my dynamically bound title! </span></p>
+</div>
+<script>
+const AttributeBinding = {
+  data() {
+    return {
+      message: 'You loaded this page on ' + new Date().toLocaleString()
+    }
+  }
+}
+
+Vue.createApp(AttributeBinding).mount('#bind-attribute')
+</script>
+<p>Here we’re encountering something new.</p>
+<p>The <code>v-bind</code> attribute you’re seeing is called a <strong>directive</strong>.</p>
+<p>Directives are prefixed with <code>v-</code> to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM.</p>
+<p>Here, we’re basically saying “<em>keep this element’s <code>title</code> attribute up-to-date with the <code>message</code> property on the current active instance.</em>”</p>
+<h3 id="handling-user-input-with-v-on-and-v-model">Handling User Input with v-on and v-model</h3>
+<p>To let users interact with our app, we can use the <code>v-on</code> directive to attach event listeners that invoke methods on our instances.</p>
+<p>Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;event-handling&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;p&gt;</span>{{ message }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;button</span> <span class="er">v-on:click</span><span class="ot">=</span><span class="st">&quot;reverseMessage&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;btn btn-danger&quot;</span><span class="kw">&gt;</span>Reverse Message<span class="kw">&lt;/button&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> EventHandling <span class="op">=</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>() {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">message</span><span class="op">:</span> <span class="st">&#39;Hello Vue.js!&#39;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">methods</span><span class="op">:</span> {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reverseMessage</span>() {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">message</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">message</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">reverse</span>()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Vue<span class="op">.</span><span class="fu">createApp</span>(EventHandling)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#event-handling&#39;</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="event-handling" class="execution">
+<p>
+{{ message }}
+</p>
+<p><button v-on:click="reverseMessage" class="btn btn-danger">Reverse Message</button></p>
+</div>
+<script>
+const EventHandling = {
+  data() {
+    return {
+      message: 'Hello Vue.js!'
+    }
+  },
+  methods: {
+    reverseMessage() {
+      this.message = this.message
+        .split('')
+        .reverse()
+        .join('')
+    }
+  }
+}
+
+Vue.createApp(EventHandling).mount('#event-handling')
 </script>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

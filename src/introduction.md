@@ -47,7 +47,7 @@ let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
 </script>
 
 
-### Declarative Rendering
+### Declarative Rendering and v-on
 
 At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
@@ -162,3 +162,100 @@ const Counter2 = {
 
 Vue.createApp(Counter2).mount('#counter2')
 </script>
+
+To let users interact with our app, we can use the `v-on` directive to attach event listeners that invoke methods on our instances.
+
+Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+
+
+In addition to text interpolation, we can also bind element attributes like this:
+
+<div id="bind-attribute" class="execution">
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound
+    title!
+  </span>
+</div>
+
+<script>
+const AttributeBinding = {
+  data() {
+    return {
+      message: 'You loaded this page on ' + new Date().toLocaleString()
+    }
+  }
+}
+
+Vue.createApp(AttributeBinding).mount('#bind-attribute')
+</script>
+
+Here we're encountering something new. 
+
+The <code>v-bind</code> attribute you're seeing is called a <strong>directive</strong>. 
+
+Directives are prefixed with <code>v-</code> to indicate that they are special attributes provided by Vue, 
+and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
+
+Here, we're basically saying 
+"<em>keep this element's <code>title</code> attribute up-to-date with the <code>message</code> property on the current active instance.</em>"
+
+### Handling User Input with v-on and v-model
+
+To let users interact with our app, we can use the `v-on` directive to attach event listeners that invoke methods on our instances.
+
+Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+
+
+```html 
+<div id="event-handling" class="execution">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage" class="btn btn-danger">Reverse Message</button>
+</div>
+
+<script>
+const EventHandling = {
+  data() {
+    return {
+      message: 'Hello Vue.js!'
+    }
+  },
+  methods: {
+    reverseMessage() {
+      this.message = this.message
+        .split('')
+        .reverse()
+        .join('')
+    }
+  }
+}
+
+Vue.createApp(EventHandling).mount('#event-handling')
+</script>
+```
+
+
+<div id="event-handling" class="execution">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage" class="btn btn-danger">Reverse Message</button>
+</div>
+
+<script>
+const EventHandling = {
+  data() {
+    return {
+      message: 'Hello Vue.js!'
+    }
+  },
+  methods: {
+    reverseMessage() {
+      this.message = this.message
+        .split('')
+        .reverse()
+        .join('')
+    }
+  }
+}
+
+Vue.createApp(EventHandling).mount('#event-handling')
+</script>
+
