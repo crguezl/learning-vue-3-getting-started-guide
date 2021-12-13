@@ -298,3 +298,108 @@ let twoWayBindingApp = Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 </script>
 
 Open the developer tools and change `twoWayBindingApp.message`
+
+
+### Conditionals and Loops
+
+#### v-if 
+
+It's easy to toggle the presence of an element, too:
+
+```html
+<div id="conditional-rendering" class="execution">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+<script>
+const ConditionalRendering = {
+  data() {
+    return {
+      seen: true
+    }
+  }
+}
+
+const ConditionalRenderingApp = Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
+</script>
+```
+
+<div id="conditional-rendering" class="execution">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+<script>
+const ConditionalRendering = {
+  data() {
+    return {
+      seen: true
+    }
+  }
+}
+
+const ConditionalRenderingApp = Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
+</script>
+
+This example demonstrates that we can bind data to not only text and attributes, 
+**but also the structure of the DOM**. 
+
+Moreover, Vue also provides a powerful transition effect system that can automatically 
+apply transition effects when elements are inserted/updated/removed by Vue.
+
+You can change `ConditionalRenderingApp.seen = false` in the developper tools to check the effect.
+
+#### v-for
+
+The `v-for` directive can be used to display a list of items using the data from an array:
+
+```html
+<div id="list-rendering">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<script>
+const ListRendering = {
+  data() {
+    return {
+      todos: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
+    }
+  }
+}
+
+const ListRenderingApp = Vue.createApp(ListRendering).mount('#list-rendering')
+</script>
+```
+
+<div id="list-rendering" class="execution">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<script>
+const ListRendering = {
+  data() {
+    return {
+      todos: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
+    }
+  }
+}
+
+const ListRenderingApp = Vue.createApp(ListRendering).mount('#list-rendering')
+</script>
+
+Open the developer tools and add a new item: `ListRenderingApp.todos.push({text:"Learn TypeScript"})`

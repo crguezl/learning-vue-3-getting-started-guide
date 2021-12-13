@@ -162,6 +162,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#declarative-rendering-and-v-on">Declarative Rendering and v-on</a></li>
           <li><a href="#handling-user-input-with-v-on-and-v-model">Handling User Input with v-on and v-model</a></li>
+          <li><a href="#conditionals-and-loops">Conditionals and Loops</a>
+          <ul>
+          <li><a href="#v-if">v-if</a></li>
+          <li><a href="#v-for">v-for</a></li>
+          </ul></li>
           </ul></li>
           <li><a href="#references">References</a></li>
           </ul></li>
@@ -443,6 +448,89 @@ const TwoWayBinding = {
 let twoWayBindingApp = Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 </script>
 <p>Open the developer tools and change <code>twoWayBindingApp.message</code></p>
+<h3 id="conditionals-and-loops">Conditionals and Loops</h3>
+<h4 id="v-if">v-if</h4>
+<p>It’s easy to toggle the presence of an element, too:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;conditional-rendering&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">v-if</span><span class="ot">=</span><span class="st">&quot;seen&quot;</span><span class="kw">&gt;</span>Now you see me<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ConditionalRendering <span class="op">=</span> {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>() {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">seen</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ConditionalRenderingApp <span class="op">=</span> Vue<span class="op">.</span><span class="fu">createApp</span>(ConditionalRendering)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#conditional-rendering&#39;</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="conditional-rendering" class="execution">
+<p><span v-if="seen">Now you see me</span></p>
+</div>
+<script>
+const ConditionalRendering = {
+  data() {
+    return {
+      seen: true
+    }
+  }
+}
+
+const ConditionalRenderingApp = Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
+</script>
+<p>This example demonstrates that we can bind data to not only text and attributes, <strong>but also the structure of the DOM</strong>.</p>
+<p>Moreover, Vue also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/updated/removed by Vue.</p>
+<p>You can change <code>ConditionalRenderingApp.seen = false</code> in the developper tools to check the effect.</p>
+<h4 id="v-for">v-for</h4>
+<p>The <code>v-for</code> directive can be used to display a list of items using the data from an array:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;list-rendering&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ol&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li</span> <span class="er">v-for</span><span class="ot">=</span><span class="st">&quot;todo in todos&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      {{ todo.text }}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/li&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ol&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ListRendering <span class="op">=</span> {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data</span>() {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">todos</span><span class="op">:</span> [</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        { <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Learn JavaScript&#39;</span> }<span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        { <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Learn Vue&#39;</span> }<span class="op">,</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        { <span class="dt">text</span><span class="op">:</span> <span class="st">&#39;Build something awesome&#39;</span> }</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ListRenderingApp <span class="op">=</span> Vue<span class="op">.</span><span class="fu">createApp</span>(ListRendering)<span class="op">.</span><span class="fu">mount</span>(<span class="st">&#39;#list-rendering&#39;</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<div id="list-rendering" class="execution">
+<ol>
+<li v-for="todo in todos">
+{{ todo.text }}
+</li>
+</ol>
+</div>
+<script>
+const ListRendering = {
+  data() {
+    return {
+      todos: [
+        { text: 'Learn JavaScript' },
+        { text: 'Learn Vue' },
+        { text: 'Build something awesome' }
+      ]
+    }
+  }
+}
+
+const ListRenderingApp = Vue.createApp(ListRendering).mount('#list-rendering')
+</script>
+<p>Open the developer tools and add a new item: <code>ListRenderingApp.todos.push({text:"Learn TypeScript"})</code></p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-casiano" class="csl-entry" role="doc-biblioentry">
