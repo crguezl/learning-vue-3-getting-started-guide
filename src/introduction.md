@@ -413,3 +413,84 @@ The component system is another important concept in Vue, because it's an abstra
 
  ![](assets/images/components.png){width="60%"}
 
+```html
+<div id="todo-list-app" class="execution">
+  <ol>
+    <!--
+      Now we provide each todo-item with the todo object
+      it's representing, so that its content can be dynamic.
+      We also need to provide each component with a "key",
+      which will be explained later.
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    ></todo-item>
+  </ol>
+</div>
+
+<script>
+const TodoList = {
+  data() {
+    return {
+      groceryList: [
+        { id: 0, text: 'Vegetables' },
+        { id: 1, text: 'Cheese' },
+        { id: 2, text: 'Whatever else humans are supposed to eat' }
+      ]
+    }
+  }
+}
+
+const TodoListAapp = Vue.createApp(TodoList)
+
+TodoListAapp.component('todo-item', {
+  props: ['todo'],
+  template: `<li>{{ todo.text }}</li>`
+})
+
+TodoListAapp.mount('#todo-list-app')
+</script>
+```
+
+**Execution:**
+
+<div id="todo-list-app" class="execution">
+  <ol>
+    <!--
+      Now we provide each todo-item with the todo object
+      it's representing, so that its content can be dynamic.
+      We also need to provide each component with a "key",
+      which will be explained later.
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    ></todo-item>
+  </ol>
+</div>
+
+<script>
+const TodoList = {
+  data() {
+    return {
+      groceryList: [
+        { id: 0, text: 'Vegetables' },
+        { id: 1, text: 'Cheese' },
+        { id: 2, text: 'Whatever else humans are supposed to eat' }
+      ]
+    }
+  }
+}
+
+const TodoListAapp = Vue.createApp(TodoList)
+
+TodoListAapp.component('todo-item', {
+  props: ['todo'],
+  template: `<li>{{ todo.text }}</li>`
+})
+
+TodoListAapp.mount('#todo-list-app')
+</script>
