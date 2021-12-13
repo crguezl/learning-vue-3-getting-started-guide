@@ -128,7 +128,7 @@ const Counter2 = {
   }
 }
 
-Vue.createApp(Counter2).mount('#counter2')
+const Counter2App = Vue.createApp(Counter2).mount('#counter2')
 </script>
 ```
 
@@ -160,7 +160,7 @@ const Counter2 = {
   }
 }
 
-Vue.createApp(Counter2).mount('#counter2')
+const Counter2App = Vue.createApp(Counter2).mount('#counter2')
 </script>
 
 To let users interact with our app, we can use the `v-on` directive to attach event listeners that invoke methods on our instances.
@@ -207,6 +207,7 @@ Note that in this method we update the state of our app without touching the DOM
 
 
 ```html 
+
 <div id="event-handling" class="execution">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage" class="btn btn-danger">Reverse Message</button>
@@ -229,11 +230,10 @@ const EventHandling = {
   }
 }
 
-Vue.createApp(EventHandling).mount('#event-handling')
+let EventHandlingApp = Vue.createApp(EventHandling).mount('#event-handling')
 </script>
 ```
 
-
 <div id="event-handling" class="execution">
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage" class="btn btn-danger">Reverse Message</button>
@@ -256,6 +256,45 @@ const EventHandling = {
   }
 }
 
-Vue.createApp(EventHandling).mount('#event-handling')
+let EventHandlingApp = Vue.createApp(EventHandling).mount('#event-handling')
 </script>
 
+Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:
+
+```html 
+<div id="two-way-binding">
+  <p>{{ message }}</p>
+  <input v-model="message" />
+</div>
+
+<script>
+const TwoWayBinding = {
+  data() {
+    return {
+      message: 'Write inside the box!'
+    }
+  }
+}
+
+let twoWayBindingApp = Vue.createApp(TwoWayBinding).mount('#two-way-binding')
+</script>
+```
+
+<div id="two-way-binding">
+  <p>{{ message }}</p>
+  <input v-model="message" />
+</div>
+
+<script>
+const TwoWayBinding = {
+  data() {
+    return {
+      message: 'Write inside the box!'
+    }
+  }
+}
+
+let twoWayBindingApp = Vue.createApp(TwoWayBinding).mount('#two-way-binding')
+</script>
+
+Open the developer tools and change `twoWayBindingApp.mwssage`
