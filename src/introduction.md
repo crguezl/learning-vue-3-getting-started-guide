@@ -46,6 +46,8 @@ const HelloVueApp = {
 let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
 </script>
 
+We have already created our very first Vue app! 
+
 This looks pretty similar to rendering a string template, but Vue has
 done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, 
 and everything is now <strong>reactive</strong>!.
@@ -95,7 +97,6 @@ const Counter = {
 let counterApp = Vue.createApp(Counter).mount('#counter')
 </script>
 
-We have already created our very first Vue app! 
 
 
 Take a look at the example below where `counter` property increments every second and you will see how rendered DOM changes:
