@@ -63,7 +63,7 @@ https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attr
 These are my notes written in pandoc markdown [@casiano] from reading the guide of Vue.js (v3) [@vuestart3],   and other [references](#references).
 
 This document only covers
-the initial sections of the *Essentials* part of the Guide, from section *Introduction* up to section *Computed Properties and Watchers*.  
+the initial sections of the *Essentials* part of the Guide, from section *[Introduction](https://vuejs.org/guide/introduction.html)* up to section *[Computed Properties](https://vuejs.org/guide/essentials/computed.html)*.  
 
 These notes have been ellaborated using [pandoc](https://pandpc.org) to translate it the markdown to HTML.
 
