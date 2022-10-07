@@ -254,6 +254,8 @@ const HelloVueApp = {
 
 let helloVue = Vue.createApp(HelloVueApp).mount('#hello-vue')
 </script>
+<p>This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now <strong>reactive</strong>!.</p>
+<p><img src="assets/images/vue3-debugging.png" width="90%" /></p>
 <h3 id="declarative-rendering-and-v-on">Declarative Rendering and v-on</h3>
 <p>At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;counter&quot;</span><span class="kw">&gt;</span></span>
@@ -287,8 +289,6 @@ const Counter = {
 let counterApp = Vue.createApp(Counter).mount('#counter')
 </script>
 <p>We have already created our very first Vue app!</p>
-<p>This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. <strong>The data and the DOM are now linked</strong>, and everything is now <strong>reactive</strong>!.</p>
-<p><img src="assets/images/vue3-debugging.png" width="90%" /></p>
 <p>Take a look at the example below where <code>counter</code> property increments every second and you will see how rendered DOM changes:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;counter2&quot;</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;execution input-group mb-3&quot;</span><span class="er">&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  Counter: {{ counter }}</span>
@@ -754,7 +754,7 @@ TodoListAapp.mount('#todo-list-app')
 </div>
 <h3 id="lifecycle-diagram">Lifecycle Diagram</h3>
 <p>Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.</p>
-<p><img src="https://v3.vuejs.org/images/lifecycle.svg" width="840" /></p>
+<p><img src="https://vuejs.org/assets/lifecycle.16e4c08e.png" width="840" /></p>
 <h2 class="unnumbered" id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-casiano" class="csl-entry" role="doc-biblioentry">

@@ -190,5 +190,4 @@ Below is a diagram for the instance lifecycle. You don\'t need to fully
 understand everything going on right now, but as you learn and build
 more, it will be a useful reference.
 
-![](https://v3.vuejs.org/images/lifecycle.svg){width="840"
-height="auto"}
+![](https://vuejs.org/assets/lifecycle.16e4c08e.png){width="840" height="auto"}
