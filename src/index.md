@@ -58,6 +58,7 @@ development version, includes helpful console warnings
 https://stackoverflow.com/questions/48429998/data-prefix-is-added-to-custom-attributes-how-to-prevent-this
 -->
 
+**October 2022**
 
 These are my notes written in pandoc markdown [@casiano] from reading the guide of Vue.js (v3) [@vuestart3],   and other [references](#references).
 
@@ -77,7 +78,7 @@ At the current time (December 2021), this notes are experimental, since the HTML
 
 To see the result, you can 
 
-1. Open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-geting-started-guide/> of the repo [crguezl/learning-vue-geting-started-guide](https://github.com/crguezl/learning-vue-geting-started-guide) containing the notes or
+1. Open the deployment in the  GitHub pages <https://crguezl.github.io/learning-vue-3-getting-started-guide/> of the repo [https://github.com/crguezl/learning-vue-3-getting-started-guide](https://github.com/crguezl/learning-vue-3-getting-started-guide) containing the notes or
 2. To install it locally, fork the repo. You have to have `pandoc` installed and  then
    1. Run `npm install-pandoc-dependencies` to install `pandoc-include` 
    2. Run `npm start` to compile the sources and open the resulting `index.html` file. 
